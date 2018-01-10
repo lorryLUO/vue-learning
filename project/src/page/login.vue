@@ -18,6 +18,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import { login } from '@/api/getData'
 
 export default {
   data () {
@@ -35,9 +36,9 @@ export default {
   mounted () {
     // el挂载到实例上去之后调用该钩子
     console.log('DOM树挂载成功')
-    if (!this.adminInfo.id) {
+    /* if (!this.adminInfo.id) {
       this.getAdminData() // 获取不到数据则请求数据
-    }
+    } */
   },
   computed: {
     ...mapState(['adminInfo']) // 获取状态
@@ -46,8 +47,11 @@ export default {
     ...mapActions(['getAdminData']),
     submitForm (formName) {
       this.$refs[formName].validate(valid => {
+        
         if (valid) {
+          console.log(this.$refs[formName])
           alert('submit!')
+          // login()
         } else {
           console.log('error submit!')
           return false

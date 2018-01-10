@@ -1,5 +1,5 @@
 
-import {getAdminInfo} from '@/api/getData'
+import { getAdminInfo } from '@/api/getData'
 
 export default {
 

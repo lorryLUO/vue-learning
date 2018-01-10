@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+
 export default {
   data () {
     return {
@@ -30,13 +32,24 @@ export default {
       }
     }
   },
+  mounted () {
+    // el挂载到实例上去之后调用该钩子
+    console.log('DOM树挂载成功')
+    if (!this.adminInfo.id) {
+      this.getAdminData() // 获取不到数据则请求数据
+    }
+  },
+  computed: {
+    ...mapState(['adminInfo']) // 获取状态
+  },
   methods: {
+    ...mapActions(['getAdminData']),
     submitForm (formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
           alert('submit!')
         } else {
-          console.log('error submit!!')
+          console.log('error submit!')
           return false
         }
       })
@@ -49,9 +62,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
-.fillcontain{
-	width: 500px;
-	margin: 0 auto;
+.fillcontain {
+  width: 500px;
+  margin: 0 auto;
 }
 </style>

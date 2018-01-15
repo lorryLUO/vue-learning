@@ -1,14 +1,14 @@
 import axios from 'axios'
 
-let url = process.env.NODE_ENV !== 'production' ? '/api' : 'http://120.78.94.51:8088/';
+let url = process.env.NODE_ENV !== 'production' ? '/test' : 'http://120.78.94.51:8088/';
 
-let func_axios = (api, data) => {
+let func_axios = (url = '', data = {}, type = 'POST') => {
 	
 	return new Promise((resolve, reject) => {
 		
 		axios({
-			method: 'post',
-			url: api,
+			method: type,
+			url: url,
 			data: data
 		}).then(function(res) {
 			if(res.status >= 200 && res.status < 300) {

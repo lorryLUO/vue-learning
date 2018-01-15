@@ -6,11 +6,22 @@ import router from './router'
 import store from './store/'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import './config'
 
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
+//自定义滚动指令
+Vue.directive('scroll',{
+  bind:function(el,binding){
+    window.addEventListener('scroll',() => {
+        let fnc = binding.value;
+        comments.log(scroll)
+        fnc(el);
+    })
+  }
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

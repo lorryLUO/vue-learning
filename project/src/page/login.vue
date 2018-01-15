@@ -1,6 +1,6 @@
 <template>
 	<div class="login_page fillcontain">
-		<el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px" class="demo-ruleForm">
+		<el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="80px" class="demo-ruleForm">
 			<el-form-item label="用户名" prop="account">
 				<el-input v-model="loginForm.account" placeholder="用户名"><span>dsfsf</span></el-input>
 			</el-form-item>
@@ -60,14 +60,14 @@
 					    const res = await api.login({
 							account: this.loginForm.account,
 							password: this.loginForm.password
-						})
+						},'get')
 					    console.log(res)
 					    if (res.data.httpCode === 200) {
 							this.$message({
 		                        type: 'success',
 		                        message: '登录成功'
 		                    });
-//							this.$router.push('manage')
+							this.$router.push('index')
 						}else{
 							this.$message({
 		                        type: 'error',
@@ -89,7 +89,11 @@
 
 <style lang="less" scoped>
 	.fillcontain {
-		width: 500px;
+		width: 90%;
+		padding-top: 100px;
 		margin: 0 auto;
+		.el-form-item__content{
+			margin-left: 0px;
+		}
 	}
 </style>

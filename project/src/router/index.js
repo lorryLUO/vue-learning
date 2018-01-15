@@ -7,6 +7,7 @@ import Home from '@/page/home'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -15,11 +16,11 @@ export default new Router({
     },
     {
       path: '/index',
-      name: 'index',
+      name: '',
       component: Index,
       children :[
         {
-          path:'home',
+          path:'',
           component:Home,
         }
       ]

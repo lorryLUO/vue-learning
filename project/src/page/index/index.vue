@@ -21,9 +21,9 @@
 			}
         },
         created:function(){
-            return this.$router.push('index/home')
+            // return this.$router.push('index/home')
         },
-       computed:mapGetters({
+       computed:mapGetters({    
             comConf:'comConf',
             loading:'loading'
         }),

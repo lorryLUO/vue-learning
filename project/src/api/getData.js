@@ -39,7 +39,7 @@ let func_axios = (api,cb) => {
 
 export default {
 
-	login: (data) => func_axios_post(urlPost + '/api/login', data),
+	// login: (data) => func_axios_post(urlPost + '/api/login', data),
 	/**
      * 获取首页热映电影
      */

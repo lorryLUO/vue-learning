@@ -2,6 +2,7 @@
 
 > A Vue.js project
 
+
 ## Build Setup
 
 ``` bash
@@ -13,6 +14,8 @@ npm run dev
 
 # build for production with minification
 npm run build
+
+# 登录密码随意 
 
 # build for production and view the bundle analyzer report
 npm run build --report

@@ -76,10 +76,7 @@
         overflow: hidden;
         height: 330px;
         padding: 15px;
-        /deep/ img{
-            width: 100%;
-            height: 100%;
-        }
+        
     }
     .swiper-container {
         height: 210px;
@@ -87,5 +84,9 @@
     .swiper-slide {
         background-position: center;
         background-size: cover;
+    }
+    img{
+        width: 100%;
+        height: 100%;
     }
 </style>

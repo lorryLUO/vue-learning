@@ -57,6 +57,7 @@
 				this.$refs[formName].validate(async valid => {
 
 					if(valid) {
+						this.$router.push('index')
 					    const res = await api.login({
 							account: this.loginForm.account,
 							password: this.loginForm.password

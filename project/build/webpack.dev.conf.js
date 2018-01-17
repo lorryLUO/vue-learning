@@ -11,6 +11,7 @@ const portfinder = require('portfinder')
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
+// "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
@@ -51,7 +52,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       favicon: 'favicon.ico',
       inject: true
     }),
-  ]
+  ]  
 })
 
 module.exports = new Promise((resolve, reject) => {

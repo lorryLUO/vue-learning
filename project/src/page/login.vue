@@ -19,6 +19,7 @@
 <script>
 	import { mapActions, mapState } from 'vuex'
 	import api from '@/api/getData'
+    import axios from 'axios'
 
 	export default {
 		data() {
@@ -57,24 +58,19 @@
 				this.$refs[formName].validate(async valid => {
 
 					if(valid) {
-						this.$router.push('index')
+						// this.$router.push('index')
 					    const res = await api.login({
 							account: this.loginForm.account,
 							password: this.loginForm.password
-						},'get')
-					    console.log(res)
-					    if (res.data.httpCode === 200) {
+						},(res) =>{
+							console.log(res)
+							console.log('成功从express中间层服务中返回')
 							this.$message({
 		                        type: 'success',
 		                        message: '登录成功'
 		                    });
 							this.$router.push('index')
-						}else{
-							this.$message({
-		                        type: 'error',
-		                        message: res.message
-		                    });
-						}
+						})
 					} else {
 						console.log('error submit!')
 						return false

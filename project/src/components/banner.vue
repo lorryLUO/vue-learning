@@ -2,7 +2,7 @@
     <div class="banner">
         <swiper :options="swiperOption" ref="mySwiper" >
             <!-- slides  @someSwiperEvent="callback"-->
-            <swiper-slide class='slide' v-for='item in banner'>
+            <swiper-slide class='slide' v-for="(item, index) in banner" :key="index">
                 <a target="_blank" href="item.key">
                      <img :src="item.key" alt="banner" title="图片">
                 </a>

@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/page/login'
-import Index from '@/page/index/index'
-import Home from '@/page/home'
-import Detail from '@/page/detail'
 
 Vue.use(Router)
+
+const index = r => require.ensure([], () => r(require('@/page/index/index.vue')), 'index')
+const home = r => require.ensure([], () => r(require('@/page/home.vue')), 'home')
+const Detail = r => require.ensure([], () => r(require('@/page/detail.vue')), 'Detail')
 
 export default new Router({
   mode: 'history',
@@ -18,11 +19,11 @@ export default new Router({
     {
       path: '/index',
       name: '',
-      component: Index,
+      component: index,
       children :[
         {
           path:'',
-          component:Home,
+          component:home,
         },
         {
           path:'/detail/:id',

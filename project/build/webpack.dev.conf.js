@@ -8,8 +8,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
+const express = require('express')
+
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
+
+var app = express() // 使用express作为一个中间层 去请求一个真实的数据 有利于SEO优化 服务端渲染
+// 编写路由
+var apiRoutes = express.Router()
+// 所有通过接口相关的api都会通过api这个路由导向到具体的路由 （请求的地址）
+app.use('/api', apiRoutes)
 
 // "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
 const devWebpackConfig = merge(baseWebpackConfig, {
@@ -36,6 +44,16 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    before (app) {
+      app.get('/api/seller', function (req, res) {
+        // 在此可以发送一个真实的后台数据请求并且返回数据
+        // 可借鉴小程序 weixinXCX项目有真实的中间层请求数据
+        res.json({
+          errno: 0,
+          data: 'd'
+        })
+      })
     }
   },
   plugins: [
@@ -51,10 +69,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       template: 'index.html',
       favicon: 'favicon.ico',
       inject: true
-    }),
+    })
   ]  
 })
 
+// 爆发一个服务
 module.exports = new Promise((resolve, reject) => {
   portfinder.basePort = process.env.PORT || config.dev.port
   portfinder.getPort((err, port) => {

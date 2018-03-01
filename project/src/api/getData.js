@@ -1,8 +1,7 @@
 import axios from 'axios'
 
 // let urlPost = process.env.NODE_ENV !== 'production' ? '/test' : 'http://120.78.94.51:8088/';
-let url = process.env.NODE_ENV !== 'production' ? '/api/' : 'http://m.maizuo.com/v4/api/';
- 
+let url = process.env.NODE_ENV !== 'production' ? '/api/' : 'http://m.maizuo.com/v4/api/'
 let func_axios_post = (url = '', data = {}, type = 'POST') => {
 	
 	return new Promise((resolve, reject) => {
@@ -24,7 +23,7 @@ let func_axios_post = (url = '', data = {}, type = 'POST') => {
 			reject(error)   
 		})
 	})
-}   
+}
  
 let func_axios = (api,cb) => {
     axios.get(api).then(function(res){
@@ -39,7 +38,7 @@ let func_axios = (api,cb) => {
 
 export default {
 
-	// login: (data) => func_axios_post(urlPost + '/api/login', data),
+	login:(data,cb) => func_axios(url + 'seller' ,cb),
 	/**
      * 获取首页热映电影
      */

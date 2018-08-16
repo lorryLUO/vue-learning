@@ -1,11 +1,14 @@
 <template>
 	<div>
         <banner></banner>
-		<div class="now-playing">
+        <cxt :width="270" :height="294" :curVal="[]"  :maxVal="1" :abscissa="abscissa3"></cxt>
+
+        <cxt-two></cxt-two>
+		<div class="now-playing"> 
 			<div class="item" v-for='item in nowplay'>
 				<router-link :to="{name:'detail',params:{id:item.id}}">
 				   <img :src="item.cover.origin" alt="">
-					<div class="desc">
+					<div class="desc"> 
 						<div class="info"> 
 							<h4>{{item.name}}</h4>
 							<p>{{item.cinemaCount}}家影院上映 {{item.watchCount}}人购票</p>
@@ -26,12 +29,40 @@
 import { mapActions, mapState, mapGetters } from "vuex";
 import api from "@/api/getData";
 import banner from "@/components/banner";
+import cxt from "@/components/canvas";
+import cxtTwo from "@/components/canvasTwo";
 
 export default {
   data() {
-    return {};
+    return {
+      curVal3: [],
+      maxVal3: 0,
+      curVal2: {
+        num: 50,
+        unit: 'km', 
+        val: parseFloat(35.22)
+      },
+      abscissa2 :{
+          start: parseInt(2),
+          end: parseInt(250),
+          unit: '次不良',
+          segmentL: 10,
+          text: true
+        },
+       abscissa3: {
+          start: 0,
+          end: parseFloat((250000/ 10000).toFixed(1)),
+          unit: '万',
+          segmentL: 10,
+          text: false
+        }
+    };
   },
   created: function() {
+    
+  },
+  mounted() {
+    //  这里模拟数据请求
     if (this.nowplay.length == 0) {
       this.$store.dispatch("getNowPlaying");
     }
@@ -41,8 +72,16 @@ export default {
       nowplay: "getNowPlayList"
     })
   },
+  watch: {
+    carCompareData(){
+        
+    }
+    
+  },
   components: {
-    banner
+    banner,
+    cxt,
+    cxtTwo
   }
 };
 </script>

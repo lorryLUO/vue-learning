@@ -20,18 +20,18 @@ export default new Router({
       path: '/index',
       name: '',
       component: index,
-      children :[
+      children: [
         {
-          path:'',
-          component:home,
+          path: '',
+          component: home,
         },
         {
-          path:'/detail/:id',
-          name:'detail',
-          component:Detail,
+          path: '/detail/:id',
+          name: 'detail',
+          component: Detail,
         }
       ]
     }
   ],
-  history:true,
+  history: true,
 })
